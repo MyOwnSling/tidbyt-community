@@ -10,9 +10,18 @@ def main(config):
     ).body()
 
     # Get the header based on the channel title and put it into a marquee for scrolling - it's too wide to display
-    header = render.Marquee(
-        child = render.Text(xpath.loads(rss_content).query("/rss/channel/title"), color = "#e39600", font = "tom-thumb"),
+    header = render.Box(
+        render.Marquee(
+            child = render.Text(
+                xpath.loads(rss_content).query("/rss/channel/title"),
+                color = "#e39600",
+                font = "tom-thumb",
+            ),
+            width = 64,
+        ),
         width = 64,
+        height = 6,
+        color = "#ffffff80",
     )
 
     # Get the latest news item node and record the article title. Put it into a vertical marquee.
